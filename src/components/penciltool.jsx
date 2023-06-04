@@ -4,12 +4,12 @@ var pos = { x: 0, y: 0 };
 
 const Penciltool = () => {
   const [points, setPoints] = useState([]);
-  const [pointArray, setpointArray] = useState([]);
+  
   const [drawing, setDrawing] = useState(false);
   const contextRef = useRef(null);
 
   useLayoutEffect(() => {
-    
+
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -23,12 +23,12 @@ const Penciltool = () => {
       contextRef.current.lineTo(ele.x, ele.y);
       contextRef.current.stroke();
     });
-  }, [points]); 
+  }, [points]);
 
   const startDrawing = (event) => {
     setDrawing(true);
     const { clientX, clientY } = event;
-    
+
     pos.x = clientX;
     pos.y = clientY;
   };
@@ -42,7 +42,7 @@ const Penciltool = () => {
     contextRef.current.moveTo(pos.x, pos.y);
 
     const { clientX, clientY } = event;
-    setpointArray((state)=>[...state, [clientX, clientY]]);
+    setpointArray((state) => [...state, [clientX, clientY]]);
     pos.x = clientX;
     pos.y = clientY;
     console.log(pointArray)
