@@ -28,4 +28,11 @@ def drawing(name: str):
         return jsonify({"error":"Drawing for given name not found"})
     return serve_pil_image(obj.image)
 
+@app.route("/points/<name>")
+def points(name: str):
+    try:
+        obj = qd.get_drawing(name)
+    except:
+        return jsonify({"error":"Drawing for given name not found"})
+    return jsonify(obj.image_data)
 app.run()
