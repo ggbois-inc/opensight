@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState, useRef } from 'react';
 
 var pos = { x: 0, y: 0 };
 
-const Penciltool = () => {
+const Penciltool = (props) => {
   const [points, setPoints] = useState([]);
   
   const [drawing, setDrawing] = useState(false);
@@ -42,10 +42,10 @@ const Penciltool = () => {
     contextRef.current.moveTo(pos.x, pos.y);
 
     const { clientX, clientY } = event;
-    setpointArray((state) => [...state, [clientX, clientY]]);
+    props.setPointArray((state) => [...state, [clientX, clientY]]);
     pos.x = clientX;
     pos.y = clientY;
-    console.log(pointArray)
+    console.log(props.pointArray)
   };
   return (
     <canvas
